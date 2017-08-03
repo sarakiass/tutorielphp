@@ -17,18 +17,19 @@
 	<?php
 	try
 	{
-      $bdd=new PDO ('mysql:host=localhost;dbname=chat;charset=utf8,'root','');
+      $bdd=new PDO ('mysql:host=localhost;dbname=minichat;charset=utf8','root','');
 	}
       catch(Exception $e)
 {
       die ('Erreur:'.$e->getMessage());
 }
-      $req=>$bdd->prepare('SELECT Pseudo,Message chat ORDERBY ID DESC LIMIT 0,10');
+      $req = $bdd->prepare('SELECT Pseudo,Message FROM chat');
+
       while ($donnees=$req->fetch())
       {
-      echo '<p><strong>'.htmlspecailchars($donnees['Pseudo']).'</strong>:'. htmlspecialchars($donnees['message']).</p>';
+      echo '<p><strong>'.htmlspecialchars($donnees['Pseudo']).'</strong>:'.htmlspecialchars($donnees['message']).'</p>';
       }
-      $req->closecursoer();
+      $req->closeCursor();
 ?>
 
 
