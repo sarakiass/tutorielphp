@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset=UTF_8/>
-<link rel="stylecheet" href="style.css"/>
+<link rel="stylesheet" href="style.css">
 <title>le minichat</title>
 </head>
 <body>
@@ -23,20 +23,14 @@
 {
       die ('Erreur:'.$e->getMessage());
 }
-      $req = $bdd->prepare('SELECT Pseudo,Message FROM chat');
-
-      while ($donnees=$req->fetch())
+     $req = $bdd->prepare('SELECT Pseudo,Message FROM chat ORDER BY ID DESC LIMIT 0,10');
+      
+     while ($donnees=$req->fetch())
       {
-      echo '<p><strong>'.htmlspecialchars($donnees['Pseudo']).'</strong>:'.htmlspecialchars($donnees['message']).'</p>';
+      	echo '<p><strong>'.htmlspecialchars($donnees['Pseudo']).'</strong>:'.htmlspecialchars($donnees['message']).'</p>';
       }
       $req->closeCursor();
 ?>
-
-
-
-
-
-
 
 </body>
 </html>
