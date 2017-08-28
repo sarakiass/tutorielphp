@@ -23,14 +23,20 @@
 {
       die ('Erreur:'.$e->getMessage());
 }
-     $req = $bdd->prepare('SELECT Pseudo,Message FROM chat ORDER BY ID DESC LIMIT 0,10');
+     $reponse = $bdd->query('SELECT Pseudo,Message,DATE_FORMAT(date,\'%d%m%Y a %Hh%imin%ss\') AS date_Fr FROM chat ORDER BY date_Fr DESC LIMIT 0,10');
       
-     while ($donnees=$req->fetch())
+     while ($donnees=$reponse->fetch())
       {
-      	echo '<p><strong>'.htmlspecialchars($donnees['Pseudo']).'</strong>:'.htmlspecialchars($donnees['message']).'</p>';
+      	?>
+      	 <strong><?php echo ($donnees['date_Fr']);?></strong>
+      	<?php echo '<p><strong>'.htmlspecialchars($donnees['Pseudo']).'</strong>:'.htmlspecialchars($donnees['Message']).'</p>';?>
+     
+      <?php
       }
-      $req->closeCursor();
-?>
+      	$reponse->closeCursor();
+      
+      ?>
+      
 
 </body>
 </html>
