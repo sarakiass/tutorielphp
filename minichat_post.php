@@ -8,9 +8,9 @@ try
       die ('Erreur:'.$e->getMessage());
   }
 
- $req=$bdd->prepare('INSERT INTO chat(Pseudo, Message, date) VALUES(?,?, NOW()) ORDER BY date DESC');
+ $req=$bdd->prepare('INSERT INTO chat(Pseudo, Message, date) VALUES(?,?, NOW())');
 
- $req->execute(array($_POST['ID'],$_POST['Pseudo'],$_POST['Message'],$_POST['date']));
+ $req->execute(array($_POST['Pseudo'],$_POST['Message']));
  
 
 	
